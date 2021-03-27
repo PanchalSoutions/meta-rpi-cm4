@@ -157,13 +157,34 @@ do_deploy() {
 
     # UART support
     if [ "${ENABLE_UART}" = "1" ]; then
+        echo "# Make pins 1 and 25 to 27 Outpu">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=25-27=op,dh">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=1=op,dh">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        
+        echo "# Make pins 0, 10-11 and 22 to 24 Input">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=0=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=10-11=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=16=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=22-24=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+
         echo "# Enable UART" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "enable_uart=1" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "dtoverlay=disable-bt" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
-        echo "dtoverlay=uart2" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "dtoverlay=uart3" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "dtoverlay=uart4" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "dtoverlay=uart5" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+
+        echo "# Enable I2C-1" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtparam=i2c_arm=on" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtparam=i2c_vc=on" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtoverlay=i2c-rtc,ds1307=on" >> ${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtoverlay=i2c4,pins_6_7" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        
+        echo "# Enable SPI1 with 3 CS Pins" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtoverlay=spi1-2cs" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+
+        echo "# Enable USB host mode" >> ${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "dtoverlay=dwc2,dr_mode=host" >> ${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
     fi
 
     # Infrared support

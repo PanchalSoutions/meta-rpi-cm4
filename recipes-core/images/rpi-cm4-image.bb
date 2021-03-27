@@ -15,7 +15,13 @@ DISTRO_FEATURES_remove = " bluez5 bluetooth wifi"
 IMAGE_INSTALL_append = " openjdk-8 						\
 						packagegroup-core-tools-debug 	\
 						packagegroup-core-full-cmdline 	\
+						packagegroup-rpi-test			\
 						i2c-tools						\
+						spidev-test						\
+						usbutils						\
+						userstartup						\
+						mono 							\
+						mono-helloworld					\
 						"
 
 IMAGE_FEATURES += "ssh-server-dropbear"
