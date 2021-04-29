@@ -157,13 +157,13 @@ do_deploy() {
 
     # UART support
     if [ "${ENABLE_UART}" = "1" ]; then
-        echo "# Make pins 6-7 and 10 to 1 Outpu">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
-        echo "gpio=6-7=op,dh">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
-        echo "gpio=10-11=op,dh">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "# Make pins 6-7 and 10 to 1 input">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=6-7=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=10-11=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         
-        echo "# Make pins 16 and 22 to 27 Input">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
-        echo "gpio=16=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
-        echo "gpio=22-27=ip,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "# Make pins 16 and 22 to 27 output">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=16=op,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
+        echo "gpio=22-27=op,dl">>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
 
         echo "# Enable UART" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
         echo "enable_uart=1" >>${DEPLOYDIR}/${BOOTFILES_DIR_NAME}/config.txt
